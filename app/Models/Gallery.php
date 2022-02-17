@@ -25,12 +25,7 @@ class Gallery extends BaseModel
      */
     protected $fillable = [
         'title',
-        'page_slug',
         'description',
-        'cannonical_link',
-        'seo_title',
-        'seo_keyword',
-        'seo_description',
         'status',
         'created_by',
         'updated_by',

@@ -24,24 +24,8 @@ class GalleryImage extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'title',
-        'page_slug',
-        'description',
-        'cannonical_link',
-        'seo_title',
-        'seo_keyword',
-        'seo_description',
-        'status',
-        'created_by',
-        'updated_by',
+        'image_name',
+        'gallery_id',
     ];
 
-    /**
-     * Casts.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'status' => 'boolean',
-    ];
 }

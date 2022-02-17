@@ -25,9 +25,7 @@ class GalleriesRepository extends BaseRepository
     private $sortable = [
         'id',
         'title',
-        'page_slug',
         'description',
-        'seo_title',
         'status',
         'created_at',
         'updated_at',
@@ -87,7 +85,6 @@ class GalleriesRepository extends BaseRepository
             throw new GeneralException(__('exceptions.backend.galleries.already_exists'));
         }
 
-        $input['page_slug'] = Str::slug($input['title']);
         $input['created_by'] = auth()->user()->id;
         $input['status'] = $input['status'] ?? 0;
 
@@ -112,7 +109,6 @@ class GalleriesRepository extends BaseRepository
             throw new GeneralException(__('exceptions.backend.galleries.already_exists'));
         }
 
-        $input['page_slug'] = Str::slug($input['title']);
         $input['updated_by'] = auth()->user()->id;
         $input['status'] = $input['status'] ?? 0;
 
