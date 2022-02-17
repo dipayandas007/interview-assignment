@@ -18,6 +18,7 @@ class CreateGalleryImagesTable extends Migration
             $table->string('image_name');
             $table->unsignedInteger('gallery_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

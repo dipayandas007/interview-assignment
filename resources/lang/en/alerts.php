@@ -66,6 +66,12 @@ return [
             'deleted' => 'The page was successfully deleted.',
         ],
 
+        'galleries' => [
+            'created' => 'The gallery was successfully created.',
+            'updated' => 'The gallery was successfully updated.',
+            'deleted' => 'The gallery was successfully deleted.',
+        ],
+
         'faqs' => [
             'created' => 'The faq was successfully created.',
             'updated' => 'The faq was successfully updated.',

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend\Galleries;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\Galleries\ManagePageRequest;
+use App\Http\Requests\Backend\Galleries\ManageGalleryRequest;
 use App\Repositories\Backend\GalleriesRepository;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -23,16 +23,16 @@ class GalleriesTableController extends Controller
     }
 
     /**
-     * @param \App\Http\Requests\Backend\Galleries\ManagePageRequest $request
+     * @param \App\Http\Requests\Backend\Galleries\ManageGalleryRequest $request
      *
      * @return mixed
      */
-    public function __invoke(ManagePageRequest $request)
+    public function __invoke(ManageGalleryRequest $request)
     {
         return Datatables::of($this->repository->getForDataTable())
             ->filterColumn('status', function ($query, $keyword) {
                 if (in_array(strtolower($keyword), ['active', 'inactive'])) {
-                    $query->where('Galleries.status', (strtolower($keyword) == 'active') ? 1 : 0);
+                    $query->where('galleries.status', (strtolower($keyword) == 'active') ? 1 : 0);
                 }
             })
             ->filterColumn('created_by', function ($query, $keyword) {

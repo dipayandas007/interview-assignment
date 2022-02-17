@@ -3,7 +3,7 @@
         <div class="col-sm-5">
             <h4 class="card-title mb-0">
                 {{ __('labels.backend.access.galleries.management') }}
-                <small class="text-muted">{{ (isset($page)) ? __('labels.backend.access.galleries.edit') : __('labels.backend.access.galleries.create') }}</small>
+                <small class="text-muted">{{ (isset($gallery)) ? __('labels.backend.access.galleries.edit') : __('labels.backend.access.galleries.create') }}</small>
             </h4>
         </div>
         <!--col-->
@@ -61,9 +61,9 @@
                 <div class="col-md-10">
                     <div class="checkbox d-flex align-items-center">
                         @php
-                        $status = isset($page) ? '' : 'checked';
+                        $status = isset($gallery) ? '' : 'checked';
                         @endphp
-                        <label class="switch switch-label switch-pill switch-primary mr-2" for="role-1"><input class="switch-input" type="checkbox" name="status" id="role-1" value="1" {{ (isset($page->status) && $page->status === 1) ? "checked" : $status }}><span class="switch-slider" data-checked="on" data-unchecked="off"></span></label>
+                        <label class="switch switch-label switch-pill switch-primary mr-2" for="role-1"><input class="switch-input" type="checkbox" name="status" id="role-1" value="1" {{ (isset($gallery->status) && $gallery->status === 1) ? "checked" : $status }}><span class="switch-slider" data-checked="on" data-unchecked="off"></span></label>
                     </div>
                 </div>
                 <!--col-->
@@ -79,7 +79,7 @@
 @section('pagescript')
 <script type="text/javascript">
     FTX.Utils.documentReady(function() {
-        FTX.Pages.edit.init("{{ config('locale.languages.' . app()->getLocale())[1] }}");
+        FTX.Galleries.edit.init("{{ config('locale.languages.' . app()->getLocale())[1] }}");
     });
 </script>
 @stop

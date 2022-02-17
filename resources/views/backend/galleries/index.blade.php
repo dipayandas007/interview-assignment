@@ -50,7 +50,7 @@
 @section('pagescript')
 <script>
     FTX.Utils.documentReady(function() {
-        FTX.Pages.list.init();
+        FTX.Galleries.list.init();
     });
 </script>
 @endsection

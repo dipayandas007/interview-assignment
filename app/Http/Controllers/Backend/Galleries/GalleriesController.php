@@ -13,6 +13,7 @@ use App\Http\Responses\Backend\Gallery\EditResponse;
 use App\Http\Responses\RedirectResponse;
 use App\Http\Responses\ViewResponse;
 use App\Models\Gallery;
+use App\Models\GalleryImage;
 use App\Repositories\Backend\GalleriesRepository;
 use Illuminate\Support\Facades\View;
 
@@ -59,8 +60,16 @@ class GalleriesController extends Controller
      */
     public function store(StoreGalleryRequest $request)
     {
-        $this->repository->create($request->except(['_token', '_method']));
-
+        $galleryCreate = $this->repository->create($request->except(['_token', '_method']));
+        if(!empty($request->file('images'))){
+            foreach ($request->file('images') as $imagefile) {
+                $image = new GalleryImage;
+                $path = $imagefile->store('/images/resource', ['disk' => 'public']);
+                $image->image_name = $path;
+                $image->gallery_id = $galleryCreate->id;
+                $image->save();
+              }
+        }
         return new RedirectResponse(route('admin.galleries.index'), ['flash_success' => __('alerts.backend.galleries.created')]);
     }
 
@@ -83,8 +92,17 @@ class GalleriesController extends Controller
      */
     public function update(Gallery $gallery, UpdateGalleryRequest $request)
     {
-        $this->repository->update($gallery, $request->except(['_token', '_method']));
-
+        $galleryUpdate = $this->repository->update($gallery, $request->except(['_token', '_method']));
+        GalleryImage::where('gallery_id', $galleryUpdate->id)->delete();
+        if(!empty($request->file('images'))){
+            foreach ($request->file('images') as $imagefile) {
+                $image = new GalleryImage;
+                $path = $imagefile->store('/images/resource', ['disk' => 'public']);
+                $image->image_name = $path;
+                $image->gallery_id = $galleryUpdate->id;
+                $image->save();
+              }
+        }
         return new RedirectResponse(route('admin.galleries.index'), ['flash_success' => __('alerts.backend.galleries.updated')]);
     }
 
