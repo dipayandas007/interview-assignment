@@ -25,6 +25,10 @@ class AddForeignKeyConstraintsToAclTables extends Migration
             $table->foreign('permission_id')->references('id')->on('permissions')->onUpdate('RESTRICT')->onDelete('CASCADE');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('CASCADE');
         });
+
+        Schema::table('gallery_images', function (Blueprint $table) {
+            $table->foreign('gallery_id')->references('id')->on('galleries')->onUpdate('RESTRICT')->onDelete('CASCADE');
+        });
     }
 
     /**
@@ -45,6 +49,10 @@ class AddForeignKeyConstraintsToAclTables extends Migration
         Schema::table('permission_user', function (Blueprint $table) {
             $table->dropForeign('permission_user_permission_id_foreign');
             $table->dropForeign('permission_user_user_id_foreign');
+        });
+
+        Schema::table('gallery_images', function (Blueprint $table) {
+            $table->dropForeign('gallery_images_gallery_id_foreign');
         });
     }
 }
