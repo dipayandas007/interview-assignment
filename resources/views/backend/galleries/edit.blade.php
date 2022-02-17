@@ -7,11 +7,11 @@
 @endsection
 
 @section('content')
-    {{ Form::model($page, ['route' => ['admin.galleries.update', $page], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'id' => 'edit-role', 'files' => true]) }}
+    {{ Form::model($gallery, ['route' => ['admin.galleries.update', $gallery], 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'PATCH', 'id' => 'edit-role', 'files' => true]) }}
 
     <div class="card">
         @include('backend.galleries.form')
-        @include('backend.components.footer-buttons', [ 'cancelRoute' => 'admin.galleries.index', 'id' => $page->id ])
+        @include('backend.components.footer-buttons', [ 'cancelRoute' => 'admin.galleries.index', 'id' => $gallery->id ])
     </div><!--card-->
     {{ Form::close() }}
 @endsection

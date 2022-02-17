@@ -36,11 +36,11 @@
 
             <div class="form-group row">
                 {{ Form::label('images_upload', trans('validation.attributes.backend.access.galleries.images_upload'), ['class' => 'col-md-2 from-control-label required']) }}
-
+                
                 @if(!empty($gallery->images))
                 <div class="col-lg-1">
                     @foreach($gallery->images as $image)
-                        <img src="{{ asset('storage/img/gallery/'.$image->name) }}" height="80" width="80">
+                        <img src="{{ asset('storage/'.$image->image_name) }}" height="80" width="80">
                     @endforeach
                 </div>
                 <div class="col-lg-5">

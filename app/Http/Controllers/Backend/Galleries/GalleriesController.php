@@ -81,6 +81,7 @@ class GalleriesController extends Controller
      */
     public function edit(Gallery $gallery, EditGalleryRequest $request)
     {
+        $gallery->images = GalleryImage::where('gallery_id', $gallery->id)->get();
         return new EditResponse($gallery);
     }
 

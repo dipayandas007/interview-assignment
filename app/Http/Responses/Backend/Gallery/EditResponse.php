@@ -29,6 +29,6 @@ class EditResponse implements Responsable
     public function toResponse($request)
     {
         return view('backend.galleries.edit')
-            ->withPage($this->gallery);
+            ->withGallery($this->gallery);
     }
 }
